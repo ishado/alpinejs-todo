@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AlpineJS</title>
+	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+	<!-- <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'> -->
+	<!-- <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'> -->
+	<script src="alpine.js" defer></script>
+	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
+<style type="text/css" media="screen">
+
+</style>
+
+<body>
+	<!-- component -->
+	<div x-data="todoList()" class="h-100 w-full flex items-center justify-center bg-blue-lightest font-sans">
+		<div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
+			<div class="mb-4">
+				<h1 class="text-grey-darkest">Todo List</h1>
+				<div class="flex mt-4">
+					<input 
+					required
+					type="text" 
+					x-model="todoName"
+					class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker" placeholder="Add Todo">
+					<button x-on:click="add" class="flex-no-shrink p-2 border-2 rounded text-blue-700 border-blue hover:text-white hover:bg-blue-700">Add</button>
+				</div>
+			</div>
+			<div>
+				<template x-for="(todo , index) in todos" :key="index">
+					<div class="flex mb-4 items-center">
+						<p x-html="todo.name" x-bind:class="{'line-through text-green' : todo.completed}"class="w-full text-grey-darkest"></p>
+						<button x-on:click="toggleCompleted(index)" x-bind:checked="todo.completed" class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-green-700 hover:bg-green-700">Done</button>
+						<button x-on:click="remove(index)" class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red-700 hover:text-white hover:bg-red-700">Remove</button>
+					</div>
+				</template>
+          	<!-- <div class="flex mb-4 items-center">
+                <p class="w-full line-through text-green">Submit Todo App Component to Tailwind Components</p>
+                <button class="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-grey border-grey hover:bg-grey">Not Done</button>
+                <button class="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red">Remove</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
